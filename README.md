@@ -4,6 +4,8 @@
 
 This Manifest V3 browser extension adds an interactive hierarchical relationship tree directly inside anime and manga pages on [AniList](https://anilist.co). It enables fans to immediately understand complex saga chronologies, canonical seasons, sequels, prequels, spin-offs, alternative universes, recaps, and adaptations.
 
+This project has been published only on the Mozilla Addons Store, I don't have the money to create a Google Developer Account.
+
 ---
 
 ## 📸 Overview & Design
