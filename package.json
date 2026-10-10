@@ -1,0 +1,39 @@
+{
+  "name": "anilist-relations-tree",
+  "version": "1.0.0",
+  "description": "Interactive relations tree and franchise genealogy graph for AniList (Chrome & Firefox)",
+  "type": "module",
+  "scripts": {
+    "icons": "npx tsx scripts/generate-icons.ts",
+    "build": "npx tsx scripts/build.ts --target=all",
+    "build:chrome": "npx tsx scripts/build.ts --target=chrome",
+    "build:firefox": "npx tsx scripts/build.ts --target=firefox",
+    "package": "npx tsx scripts/package.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "anilist",
+    "anime",
+    "manga",
+    "graph",
+    "tree",
+    "relations",
+    "browser-extension",
+    "webextension"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@dagrejs/dagre": "^3.1.1",
+    "webextension-polyfill": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.308",
+    "@types/dagre": "^0.7.54",
+    "@types/node": "^22.13.10",
+    "@types/webextension-polyfill": "^0.12.6",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1"
+  }
+}
