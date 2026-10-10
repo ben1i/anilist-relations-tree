@@ -12,7 +12,7 @@ Faithfully designed to match modern dark theme aesthetics:
 - **Canvas Background:** Deep dark canvas with a subtle dot-grid pattern responsive to pan and zoom.
 - **Media Cards (Nodes):** Anthracite rounded cards (`#141518`), subtle border, bold centered titles, and meta tags (*Format* on left, *Episode / Chapter count* on right).
 - **Current Media Highlight:** The anime/manga currently open on the AniList page features an amber gold border and glow (`#f59e0b`).
-- **Connections & Relation Badges:** Left-to-right dashed Bézier curves with centered badges (`SEQUEL`, `PREQUEL`, `SPIN OFF`, `ALTERNATIVE`, `OTHER`, `SIDE STORY`, `SUMMARY`, `ADAPTATION`).
+- **Connections & Relation Badges:** Left-to-right dashed Bézier curves with centered badges (`SEQUEL`, `PREQUEL`, `SPIN OFF`, `ALTERNATIVE`, `OTHER`, `SIDE STORY`, `SUMMARY`).
 - **Interactive Controls:** Cursor-centered mouse wheel zoom, pan dragging, auto-center (*Fit View*), zoom reset, fullscreen toggle, and quick keyboard shortcuts (`Esc` or `Alt + R`).
 - **Integrated Filters:**
   - Media format filter: *All*, *Anime*, *Manga*.
