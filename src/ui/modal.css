@@ -1,0 +1,654 @@
+/* ==========================================================================
+   AniList Relations Tree - Scoped Styles (Dark Theme)
+   ========================================================================== */
+
+:host {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: dark;
+  display: none !important;
+}
+
+:host(.is-open) {
+  display: block !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.alt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  flex-direction: column;
+  background-color: #0b0c0f;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, sans-serif;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.alt-overlay.is-open {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+
+/* Guard: when overlay is closed, ensure no child ever intercepts pointer events */
+.alt-overlay:not(.is-open),
+.alt-overlay:not(.is-open) * {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* ==========================================================================
+   Header & Toolbar
+   ========================================================================== */
+
+.alt-header {
+  height: 58px;
+  background: rgba(15, 17, 23, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1f232d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  gap: 16px;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.alt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+}
+
+.alt-logo-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.alt-logo-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #02a9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(2, 169, 255, 0.4);
+}
+
+.alt-logo-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: #ffffff;
+}
+
+.alt-franchise-title {
+  font-size: 12.5px;
+  color: #94a3b8;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 8px;
+  border-left: 1px solid #282f3d;
+}
+
+.alt-badge-count {
+  font-size: 11px;
+  font-weight: 600;
+  background: #1c2230;
+  color: #38bdf8;
+  padding: 2px 7px;
+  border-radius: 12px;
+  border: 1px solid #223249;
+}
+
+/* Middle Toolbar Controls */
+.alt-header-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.alt-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.alt-search-input {
+  background: #151821;
+  border: 1px solid #282e3d;
+  border-radius: 6px;
+  color: #f1f5f9;
+  font-size: 12px;
+  padding: 6px 10px 6px 28px;
+  width: 170px;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.alt-search-input:focus {
+  border-color: #02a9ff;
+  width: 220px;
+  box-shadow: 0 0 0 2px rgba(2, 169, 255, 0.2);
+}
+
+.alt-search-icon {
+  position: absolute;
+  left: 8px;
+  width: 13px;
+  height: 13px;
+  fill: #64748b;
+  pointer-events: none;
+}
+
+.alt-segmented-control {
+  display: flex;
+  background: #13161f;
+  border: 1px solid #222736;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.alt-seg-btn {
+  background: transparent;
+  border: none;
+  color: #828c9f;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.alt-seg-btn:hover {
+  color: #e2e8f0;
+}
+
+.alt-seg-btn.is-active {
+  background: #252b3d;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.alt-depth-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #13161f;
+  border: 1px solid #222736;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.alt-depth-slider {
+  width: 55px;
+  accent-color: #02a9ff;
+  cursor: pointer;
+}
+
+.alt-filter-dropdown-btn {
+  background: #13161f;
+  border: 1px solid #222736;
+  border-radius: 6px;
+  color: #94a3b8;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+}
+
+.alt-filter-dropdown-btn:hover {
+  border-color: #384257;
+  color: #e2e8f0;
+}
+
+/* Header Right Actions */
+.alt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.alt-icon-btn {
+  background: #151822;
+  border: 1px solid #262c3b;
+  border-radius: 6px;
+  color: #cbd5e1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.alt-icon-btn:hover {
+  background: #242b3b;
+  border-color: #3b445b;
+  color: #ffffff;
+}
+
+.alt-icon-btn.primary {
+  background: #02a9ff;
+  border-color: #02a9ff;
+  color: #ffffff;
+}
+
+.alt-icon-btn.primary:hover {
+  background: #20b4ff;
+}
+
+.alt-icon-btn.close {
+  background: #23161c;
+  border-color: #481f2a;
+  color: #f87171;
+}
+
+.alt-icon-btn.close:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Filter Popover
+   ========================================================================== */
+
+.alt-filter-popover {
+  position: absolute;
+  top: 52px;
+  right: 180px;
+  background: #141722;
+  border: 1px solid #283042;
+  border-radius: 8px;
+  padding: 12px;
+  width: 240px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alt-filter-popover-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.alt-filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.alt-filter-checkbox-label input {
+  accent-color: #02a9ff;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Canvas & Graph Viewport
+   ========================================================================== */
+
+.alt-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: #0b0c0f;
+  cursor: grab;
+}
+
+/* ==========================================================================
+   Node Cards (Pixel-perfect matching reference screenshot)
+   ========================================================================== */
+
+.alt-node-card {
+  position: absolute;
+  background: #141518;
+  border: 1px solid #282a30;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+.alt-overlay.is-open .alt-node-card {
+  pointer-events: auto;
+}
+
+.alt-node-card:hover {
+  border-color: #4f566b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+
+/* Highlighted node currently visited on AniList */
+.alt-node-card.is-current {
+  border: 1.5px solid #f59e0b !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.45) !important;
+}
+
+.alt-node-card.is-current .alt-card-meta {
+  color: #fbbf24;
+}
+
+/* Node search focus flash */
+.alt-node-card.is-focused {
+  animation: alt-focus-pulse 1s infinite alternate;
+}
+
+@keyframes alt-focus-pulse {
+  from {
+    box-shadow: 0 0 10px #38bdf8;
+    border-color: #38bdf8;
+  }
+  to {
+    box-shadow: 0 0 24px #38bdf8;
+    border-color: #02a9ff;
+  }
+}
+
+.alt-card-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.alt-card-title {
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.alt-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 9.5px;
+  color: #828a9b;
+  font-weight: 500;
+}
+
+.alt-meta-format {
+  color: #949eb2;
+}
+
+.alt-meta-count {
+  color: #949eb2;
+}
+
+/* ==========================================================================
+   Edge Line & Badge Hover
+   ========================================================================== */
+
+.alt-edge-item {
+  transition: opacity 0.2s ease;
+}
+
+.alt-edge-item:hover .alt-edge-line {
+  stroke: #02a9ff;
+  stroke-width: 1.8;
+}
+
+.alt-edge-item:hover .alt-edge-badge-rect {
+  stroke: #02a9ff;
+}
+
+.alt-edge-item:hover .alt-edge-badge-text {
+  fill: #ffffff;
+}
+
+/* ==========================================================================
+   Tooltip / Popover
+   ========================================================================== */
+
+.alt-node-tooltip {
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+  background: #151822;
+  border: 1px solid #2b3346;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
+  min-width: 220px;
+  max-width: 290px;
+  animation: alt-fade-in 0.15s ease-out;
+}
+
+@keyframes alt-fade-in {
+  from { opacity: 0; transform: translate(-50%, -95%); }
+  to { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+.alt-tt-content {
+  display: flex;
+  gap: 10px;
+}
+
+.alt-tt-cover {
+  width: 52px;
+  height: 74px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #202430;
+  flex-shrink: 0;
+}
+
+.alt-tt-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.alt-tt-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.alt-tt-stats {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.alt-tt-tag {
+  background: #202636;
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.alt-tt-tag.score {
+  background: #143224;
+  color: #34d399;
+}
+
+.alt-tt-tag.status {
+  background: #252316;
+  color: #fbbf24;
+}
+
+.alt-tt-hint {
+  font-size: 10px;
+  color: #02a9ff;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Loading Overlay
+   ========================================================================== */
+
+.alt-loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 12, 15, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 50;
+  transition: opacity 0.25s ease;
+}
+
+.alt-loading-overlay.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alt-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid #1e2433;
+  border-top-color: #02a9ff;
+  border-radius: 50%;
+  animation: alt-spin 0.8s linear infinite;
+}
+
+@keyframes alt-spin {
+  to { transform: rotate(360deg); }
+}
+
+.alt-loading-status {
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.alt-loading-bar-wrap {
+  width: 220px;
+  height: 4px;
+  background: #1c2230;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.alt-loading-bar {
+  height: 100%;
+  width: 40%;
+  background: #02a9ff;
+  border-radius: 4px;
+  animation: alt-indeterminate 1.5s infinite ease-in-out;
+}
+
+@keyframes alt-indeterminate {
+  0% { transform: translateX(-100%); width: 30%; }
+  50% { width: 60%; }
+  100% { transform: translateX(350%); width: 30%; }
+}
+
+/* ==========================================================================
+   Footer Legend
+   ========================================================================== */
+
+.alt-footer {
+  height: 34px;
+  background: #0f1117;
+  border-top: 1px solid #1a1e29;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  font-size: 11px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.alt-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.alt-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.alt-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.alt-legend-dot.current {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+}
+
+.alt-legend-dot.normal {
+  background: #2b303c;
+  border: 1px solid #4a5162;
+}
+
+.alt-legend-dot.edge {
+  background: #4b5162;
+}
+
+.alt-shortcuts-hint {
+  color: #555e70;
+}

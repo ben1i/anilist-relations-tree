@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "AniList Relations Tree",
+  "version": "1.0.0",
+  "description": "Explore anime & manga franchise timelines and genealogical connection trees interactively on AniList.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png"
+    },
+    "default_title": "Open AniList Relations Tree"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://anilist.co/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://anilist.co/*",
+    "https://graphql.anilist.co/*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "anilist-relations-tree@extension",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}
