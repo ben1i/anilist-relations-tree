@@ -6,40 +6,6 @@ This Manifest V3 browser extension adds an interactive hierarchical relationship
 
 ---
 
-## 📋 Mozilla Add-ons (AMO) Reviewer Instructions
-
-### 1. Build Environment & Requirements
-- **Operating System:** Cross-platform (Windows 10/11, macOS 12+, or Ubuntu/Debian Linux 20.04+).
-- **Node.js:** Version 18.0.0 or later (LTS recommended, download from [nodejs.org](https://nodejs.org/)).
-- **npm:** Version 9.0.0 or later (included automatically with Node.js).
-
-### 2. Step-by-Step Build Instructions
-From the root directory of this unzipped source archive:
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Build the Firefox extension:**
-   ```bash
-   npm run build:firefox
-   ```
-   *(Alternatively, run `npm run build` to build both Firefox and Chrome targets).*
-
-3. **Verify the generated extension:**
-   The reproducible extension files are generated into `dist/firefox/`:
-   - `manifest.json` (copied from `public/manifest.firefox.json`)
-   - `content.js` (compiled from `src/content/index.ts` via Vite)
-   - `background.js` (compiled from `src/background/index.ts` via Vite)
-   - `icons/` (copied from `public/icons/`)
-
-4. **Package archive (optional):**
-   ```bash
-   npm run package
-   ```
-   Generates `dist/anilist-relations-tree-firefox.zip`.
-
-
 ## 📸 Overview & Design
 
 Faithfully designed to match modern dark theme aesthetics:
